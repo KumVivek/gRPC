@@ -1,5 +1,4 @@
-﻿using Grpc.Message;
-using Grpc.Net.Client;
+﻿using Grpc.Net.Client;
 using System;
 
 namespace gRPC.Client
@@ -13,10 +12,15 @@ namespace gRPC.Client
             AppContext.SetSwitch("System.Net.Http.SocketsHttpHandler.Http2UnencryptedSupport", true);
 
             var channel = GrpcChannel.ForAddress("http://localhost:5000");
-            var client = new Sample.SampleClient(channel);
+            var client = new Math.ArithmeticServices.ArithmeticService.ArithmeticServiceClient(channel);
 
-            var response = client.SayHello(new HelloRequest() { Name = "Vivek"});
-            Console.WriteLine(response.Message);
+            var response = client.PerformAddOperation(new Math.ArithmeticServices.InputRequest() 
+            {
+                A = 10,
+                B = 10
+            });
+            Console.WriteLine(response.Output);
+            Console.ReadKey();
         }
     }
 }

@@ -1,0 +1,11 @@
+﻿syntax  = "proto3";
+option csharp_namespace = "ServerStreamExample";
+package ServerStreamExampleService;
+
+service Ping {
+       rpc DoReply(Message) returns (stream Message){}
+}
+
+message Message {
+      string msg = 1;
+}

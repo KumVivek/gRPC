@@ -5,10 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Protos\**" />
-    <Content Remove="Protos\**" />
-    <EmbeddedResource Remove="Protos\**" />
-    <None Remove="Protos\**" />
+    <Protobuf Include="Protos\greet.proto" GrpcServices="Server" />
   </ItemGroup>
 
   <ItemGroup>
@@ -16,7 +13,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Messages\Unary.Messages.csproj" />
+    <ProjectReference Include="..\Stream.Message\Stream.Message.csproj" />
   </ItemGroup>
 
 </Project>

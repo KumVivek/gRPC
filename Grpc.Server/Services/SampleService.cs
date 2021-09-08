@@ -1,14 +1,11 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Grpc.Core;
-using Grpc.Message;
+using Math.ArithmeticServices;
 using Microsoft.Extensions.Logging;
+using System.Threading.Tasks;
 
 namespace Grpc.Server
 {
-    public class SampleService : Sample.SampleBase
+    public class SampleService : Math.ArithmeticServices.ArithmeticService.ArithmeticServiceBase
     {
         private readonly ILogger<SampleService> _logger;
         public SampleService(ILogger<SampleService> logger)
@@ -16,12 +13,12 @@ namespace Grpc.Server
             _logger = logger;
         }
 
-        public override Task<HelloReply> SayHello(HelloRequest request, ServerCallContext context)
+        public async override Task<InputResponse> PerformAddOperation(InputRequest request, ServerCallContext context)
         {
-            return Task.FromResult(new HelloReply
+           return new InputResponse()
             {
-                Message = "Hello " + request.Name
-            });
+                Output = request.A + request.B
+            };
         }
     }
 }

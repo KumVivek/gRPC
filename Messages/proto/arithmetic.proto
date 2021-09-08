@@ -1,0 +1,18 @@
+﻿syntax  = "proto3";
+option csharp_namespace = "Math.ArithmeticServices";
+package ArithmeticServices;
+
+message InputRequest {
+int32 a = 1;
+int32 b = 2;
+}
+
+message InputResponse {
+int32 output = 1;
+}
+
+
+service ArithmeticService {
+    rpc PerformAddOperation (InputRequest) returns    
+    (InputResponse) {}
+}
